@@ -17,7 +17,8 @@ import '../styles/MyPage.css';
 import '../styles/contentPost.css';
 import '../styles/Search.css';
 import '../styles/Select.css';
-import '../styles/Alert.css';
+import '../styles/Alert.scss';
+import '../styles/Modal.scss';
 import '../styles/Loading.css';
 import '../styles/Weather.css';
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from '../../styles/Modal.module.css';
 import Image from 'next/image';
 import signinPic from '../../public/18:8.png';
 
@@ -70,16 +69,12 @@ export default function Signin({
         const url = new URL(window.location.href);
         const authorizationCode = url.searchParams.get('code');
         const getAccessToken = async (authorizationCode) => {
-            await axios
-                .post(`${process.env.NEXT_PUBLIC_URL}/signin/kakao`, { authorizationCode })
-                .then((res) => {
-                    setMessage('로그인 완료');
-                    setIsOk(true);
-                    socialHandler(res.data.data);
-                    closeInModal();
-                })
-                .then((res) => {});
-
+            await axios.post(`${process.env.NEXT_PUBLIC_URL}/signin/kakao`, { authorizationCode }).then((res) => {
+                setMessage('로그인 완료');
+                setIsOk(true);
+                socialHandler(res.data.data);
+                closeInModal();
+            });
         };
         if (authorizationCode) {
             await getAccessToken(authorizationCode);
@@ -90,11 +85,11 @@ export default function Signin({
         <>
             {isInClick === true ? (
                 <>
-                    <div className={styles.Modal_back}>
-                        <div className={styles.Modal}>
-                            <div className={styles.Modal_container}>
+                    <div className="modal modal-signin">
+                        <div className="back">
+                            <div className="container">
                                 <svg
-                                    className={styles.close_btn}
+                                    className="btn btn--modal--close"
                                     onClick={closeInModal}
                                     width="24"
                                     height="24"
@@ -105,13 +100,13 @@ export default function Signin({
                                         fill="black"
                                     />
                                 </svg>
-                                <h1 className={styles.Modal_logo}>Tiny Honey Tip</h1>
-                                <h2 className={styles.title}>Sign In</h2>
-                                <div className={styles.input_cont}>
-                                    <div className={styles.input_container}>
-                                        <div className={styles.label}>Email</div>
+                                <h1 className="logo">Tiny Honey Tip</h1>
+                                <h2 className="title">Sign In</h2>
+                                <div className="input-container">
+                                    <div className="area">
+                                        <div className="label">Email</div>
                                         <input
-                                            className={styles.signin_input}
+                                            className="email"
                                             name="email"
                                             type="text"
                                             placeholder="Email을 입력하세요"
@@ -119,11 +114,10 @@ export default function Signin({
                                             value={loginInfo.email}
                                         />
                                     </div>
-
-                                    <div className={styles.input_container}>
-                                        <div className={styles.label}>Password</div>
+                                    <div className="area">
+                                        <div className="label">Password</div>
                                         <input
-                                            className={styles.signin_input}
+                                            className="password"
                                             name="password"
                                             type="password"
                                             placeholder="password를 입력하세요"
@@ -131,28 +125,24 @@ export default function Signin({
                                             value={loginInfo.password}
                                         />
                                     </div>
-
-                                    <div className={styles.modal_img_container}>
-                                        <div className={styles.modal_img}>
-                                            <Image src={signinPic} alt="sign in picture" />
-                                        </div>
+                                    <div className="welcomeimg">
+                                        <Image src={signinPic} alt="sign in picture" />
                                     </div>
-
-                                    <div className={styles.signin_line}>
-                                        <button className={styles.signin_btn} onClick={loginRequestHandler}>
+                                    <div className="line line-signin">
+                                        <button className="btn btn-modal" onClick={loginRequestHandler}>
                                             Sign In
                                         </button>
-                                        <button className={styles.kakao_btn} onClick={kakaoRequestHandler}>
+                                        <button className="btn btn-modal--kakao" onClick={kakaoRequestHandler}>
                                             <img
-                                                className={styles.kakaoLogo}
+                                                className="logo--kakao"
                                                 src="https://developers.kakao.com/tool/resource/static/img/button/kakaolink/kakaolink_btn_medium.png"
                                             />
                                             카카오 로그인
                                         </button>
                                     </div>
-                                    <div className={styles.Signup_footer}>
+                                    <div className="footer-modal">
                                         <span>계정이 없으신가요?</span>
-                                        <button className={styles.Convert_btn} onClick={convertUpBtn}>
+                                        <button className="btn--convert" onClick={convertUpBtn}>
                                             Sign up
                                         </button>
                                     </div>
