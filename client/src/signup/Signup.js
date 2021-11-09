@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import styles from '../../styles/Modal.module.css';
 import Image from 'next/image';
 import signinPic from '../../public/18:8.png';
 
@@ -84,12 +83,12 @@ export default function Signup({
         <>
             {isUpClick === true ? (
                 <>
-                    <div className={styles.Modal_back}>
-                        <div className={styles.Modal_signup}>
+                    <div className="modal modal-signup">
+                        <div className="back">
                             <form onSubmit={(e) => e.preventDefault()}>
-                                <div className={styles.Modal_container}>
+                                <div className="container">
                                     <svg
-                                        className={styles.close_btn_up}
+                                        className="btn btn--modal--close"
                                         onClick={closeUpModal}
                                         width="24"
                                         height="24"
@@ -100,14 +99,14 @@ export default function Signup({
                                             fill="black"
                                         />
                                     </svg>
-                                    <h1 className={styles.Modal_logo}>Tiny Honey Tip</h1>
-                                    <h2 className={styles.title}>Sign Up</h2>
-                                    <div className={styles.input_cont}>
-                                        <div className={styles.input_container}>
-                                            <div className={styles.label}>Email</div>
+                                    <h1 className="logo">Tiny Honey Tip</h1>
+                                    <h2 className="title">Sign Up</h2>
+                                    <div className="input-container">
+                                        <div className="area">
+                                            <div className="label">Email</div>
                                             <input
                                                 name="email"
-                                                className={styles.signin_input}
+                                                className="email"
                                                 type="email"
                                                 onBlur={checkEmail}
                                                 placeholder="Email을 입력하세요"
@@ -115,35 +114,35 @@ export default function Signup({
                                                 value={signupInfo.email}
                                             />
                                             {signupInfo.email.length === 0 ? null : (
-                                                <div className={styles.checkmsg}>
+                                                <div className="checkmsg">
                                                     {!ischeckEmail ? '올바른 이메일 형식이 아닙니다' : null}
                                                 </div>
                                             )}
                                         </div>
-                                        <div className={styles.input_container}>
-                                            <div className={styles.label}>User Name</div>
+                                        <div className="area">
+                                            <div className="label">User Name</div>
                                             <input
                                                 maxLength="8"
                                                 name="username"
-                                                className={styles.signin_input}
+                                                className="username"
                                                 type="username"
                                                 placeholder="User Name 최대 8글자"
                                                 onChange={(e) => inputHandler(e)}
                                                 value={signupInfo.username}
                                             />
                                             {signupInfo.username.length === 0 ? null : (
-                                                <div className={styles.checkmsg}>
+                                                <div className="checkmsg">
                                                     {signupInfo.username.length > 1
                                                         ? null
                                                         : '올바른 닉네임을 입력해주세요.'}
                                                 </div>
                                             )}
                                         </div>
-                                        <div className={styles.input_container}>
-                                            <div className={styles.label}>Password</div>
+                                        <div className="area">
+                                            <div className="label">Password</div>
                                             <input
                                                 name="password"
-                                                className={styles.signin_input}
+                                                className="password"
                                                 type="password"
                                                 onBlur={checkPassword}
                                                 placeholder="영문/숫자 조합 8~12글자"
@@ -151,39 +150,39 @@ export default function Signup({
                                                 value={signupInfo.password}
                                             />{' '}
                                             {signupInfo.password.length === 0 ? null : (
-                                                <div className={styles.checkmsg}>
+                                                <div className="checkmsg">
                                                     {!ischeckPassword ? '올바른 비밀번호 형식이 아닙니다' : null}
                                                 </div>
                                             )}
                                         </div>
-                                        <div className={styles.input_container}>
-                                            <div className={styles.label}>Confirm Password</div>
+                                        <div className="area">
+                                            <div className="label">Confirm Password</div>
                                             <input
                                                 name="confirmPassword"
                                                 type="password"
-                                                className={styles.signin_input}
+                                                className="password"
                                                 onBlur={checkConfirmPassword}
                                                 placeholder="영문/숫자 조합 8~12글자"
                                                 onChange={(e) => inputHandler(e)}
                                                 value={signupInfo.confirmPassword}
                                             />{' '}
                                             {signupInfo.password.length === 0 ? null : (
-                                                <div className={styles.checkmsg}>
+                                                <div className="checkmsg">
                                                     {!isconfirm ? '비밀번호가 일치하지 않습니다.' : null}
                                                 </div>
                                             )}
                                         </div>
-                                        <div className={styles.modal_img}>
+                                        <div className="welcomeimg">
                                             <Image src={signinPic} alt="sign in picture" />
                                         </div>
-                                        <div className={styles.signin_line}>
-                                            <button className={styles.signin_btn} onClick={signupRequestHandler}>
+                                        <div className="line line-signup">
+                                            <button className="btn-modal" onClick={signupRequestHandler}>
                                                 Sign Up
                                             </button>
                                         </div>
-                                        <div className={styles.Signup_footer}>
+                                        <div className="footer-modal">
                                             <span>계정이 있으신가요?</span>
-                                            <button className={styles.Convert_btn} onClick={convertInBtn}>
+                                            <button className="btn--convert" onClick={convertInBtn}>
                                                 Sign in
                                             </button>
                                         </div>
@@ -198,16 +197,6 @@ export default function Signup({
                     Sign Up
                 </a>
             )}
-            {isOk ? (
-                <div className={styles.alert_container}>
-                    <div className={styles.alert_box}>{message}</div>
-                    <div>
-                        <button className={styles.alert_btn} onClick={okHandler}>
-                            Close
-                        </button>
-                    </div>
-                </div>
-            ) : null}
         </>
     );
 }
